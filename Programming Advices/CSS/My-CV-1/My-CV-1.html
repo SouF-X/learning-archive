@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SouF-X CV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrapper">
+        <article class="card" aria-labelledby="cv-title">
+            <!-- ── Header: photo, name/title, contacts, manual theme toggle ── ////////////////////////////////////////////////////// -->
+            <header class="header">
+                <!--Start Button-->
+                <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false"
+                    aria-label="Toggle dark or light theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor"
+                            d="M12 4a1 1 0 0 1 1 1V7a1 1 0 0 1-2 0V5a1 1 0 0 1 1-1Zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-5a1 1 0 0 1 1 1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1 1 1 0 0 1 1-1ZM3 12a1 1 0 0 1-1 1H0a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1Zm15.66 6.66a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.42 1.41l-1.41-1.41a1 1 0 0 1 0-1.42ZM4.93 4.93a1 1 0 0 1 1.41 0L7.76 6.34A1 1 0 0 1 6.34 7.76L4.93 6.34a1 1 0 0 1 0-1.41Zm0 14.14a1 1 0 0 1 1.41 0l1.41 1.41A1 1 0 0 1 6.34 22.9l-1.41-1.41a1 1 0 0 1 0-1.41ZM19.07 4.93a1 1 0 0 1 1.41 0 1 1 0 0 1 0 1.41l-1.41 1.41A1 1 0 0 1 17.66 6.34l1.41-1.41Z" />
+                    </svg>
+                    <span>Toggle Theme</span>
+                </button>
+                <!--End Button-->
+                <!--Start Avatar-->
+
+                <div class="avatar" role="img" aria-label="Profile photo">
+                    <img src="Images/2025_06_23_21_00_IMG_0154.jpg" alt="Your Name portrait" loading="lazy" />
+                </div>
+                <!--End Avatar-->
+                <!--Start Title Block-->
+                <div class="title-block">
+                    <h1 id="cv-title">Soufiane Boudchich</h1>
+                    <p class="muted">Full Stack Developer • Website • Discipline-Consistency-Leadership</p>
+
+                    <div class="contact" aria-label="Contact information">
+                        <a href="mailto:you@example.com" aria-label="Email">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z" />
+                            </svg>
+                            you@example.com
+                        </a>
+
+                        <span aria-label="Phone">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.7 11.7 0 0 0 3.7.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11.7 11.7 0 0 0 .6 3.7 1 1 0 0 1-.24 1Z" />
+                            </svg>
+                            +212 6X XXX XXXX
+                        </span>
+
+                        <span aria-label="Location">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
+                            </svg>
+                            Morocco, Sefrou
+                        </span>
+
+                        <a href="https://your-portfolio.example" target="_blank" rel="noopener" aria-label="Website">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 17.9V18h-2v1.9A8 8 0 0 1 4.1 13H6v-2H4.1A8 8 0 0 1 11 4.1V6h2V4.1A8 8 0 0 1 19.9 11H18v2h1.9A8 8 0 0 1 13 19.9Z" />
+                            </svg>
+                            your-portfolio.example
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener"
+                            aria-label="LinkedIn">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.8v2.05h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.77 2.64 4.77 6.08V23h-4v-6.67c0-1.59-.03-3.63-2.21-3.63-2.21 0-2.55 1.73-2.55 3.52V23h-4V8z" />
+                            </svg>
+                            linkedin.com/in/your-profile
+                        </a>
+
+                        <a href="https://github.com/your-username" target="_blank" rel="noopener" aria-label="GitHub">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor"
+                                    d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.6 11.6 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.3 0 4.6-2.7 5.6-5.3 5.9.4.4.7 1 .7 2v2.9c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
+                            </svg>
+                            github.com/SouF-X
+                        </a>
+                    </div>
+                </div>
+                <!--End Title Block //////////////////////////////////////////////////////-->
+            </header>
+
+            <!-- ── Body: Sidebar + Main content ── //////////////////////////////////////////////////////-->
+
+            <div class="grid">
+                <!--Start Sidebar //////////////////////////////////////////////////////////////////////-->
+                <aside class="side" aria-label="Sidebar">
+
+                    <!--Profil-->
+                    <section class="block" aria-labelledby="profile-title">
+                        <h3 id="profile-title">Profile</h3>
+                        <p>
+                            Short professional summary in 3–5 lines. Mention your years of experience,
+                            strongest skills, and the impact you create. Use specific, quantifiable
+                            achievements where possible.
+                        </p>
+                    </section>
+
+                    <!--Skills-->
+                    <section class="block" aria-labelledby="skills-title">
+                        <h3 id="skills-title">Skills</h3>
+
+                        <!-- Each .meter > span width is driven by inline --v -->
+                        <div class="skill">
+                            <span>HTML / Semantic Markup</span>
+                            <div class="meter" aria-hidden="true"><span style="--v: 90%"></span></div>
+                        </div>
+                        <div class="skill">
+                            <span>CSS / Responsive Design</span>
+                            <div class="meter" aria-hidden="true"><span style="--v: 85%"></span></div>
+                        </div>
+                        <div class="skill">
+                            <span>Accessibility (a11y)</span>
+                            <div class="meter" aria-hidden="true"><span style="--v: 70%"></span></div>
+                        </div>
+                        <div class="skill">
+                            <span>Git / Collaboration</span>
+                            <div class="meter" aria-hidden="true"><span style="--v: 75%"></span></div>
+                        </div>
+                    </section>
+
+                    <!--Tools-->
+                    <section class="block" aria-labelledby="tools-title">
+                        <h3 id="tools-title">Tools & Tech</h3>
+                        <div class="chips" role="list" aria-label="Tools and technologies">
+                            <span class="tag" role="listitem">VS Code</span>
+                            <span class="tag" role="listitem">Figma</span>
+                            <span class="tag" role="listitem">Git</span>
+                            <span class="tag" role="listitem">GitHub</span>
+                            <span class="tag" role="listitem">Chrome DevTools</span>
+                            <span class="tag" role="listitem">Netlify</span>
+                        </div>
+                    </section>
+
+                    <!--Languages-->
+                    <section class="block" aria-labelledby="languages-title">
+                        <h3 id="languages-title">Languages</h3>
+                        <p>Arabic (Native), English (Professional)</p>
+                    </section>
+
+                    <!--Interests-->
+                    <section class="block" aria-labelledby="interests-title">
+                        <h3 id="interests-title">Interests</h3>
+                        <p>Open-source, Web Performance, UI Design, Teaching</p>
+                    </section>
+
+                </aside>
+                <!--End Sidebar//////////////////////////////////////////////////////////////////////-->
+
+                <!-- Start Main column //////////////////////////////////////////////////////////////////////-->
+                <div class="main" aria-label="Main content">
+
+                    <!--Experience-->
+                    <section class="section" aria-labelledby="experience-title">
+                        <h2 id="experience-title">Experience</h2>
+
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Front-End Developer</div>
+                                <div class="place">Tech Co • Amman</div>
+                                <div class="when">2022 — Present</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Built responsive component library; reduced page bloat by 25%.</li>
+                                <li>Led a11y audit and fixes, improving Lighthouse Accessibility to 98.</li>
+                                <li>Partnered with design to implement Figma-to-code workflow.</li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Web Designer</div>
+                                <div class="place">Creative Studio • Remote</div>
+                                <div class="when">2020 — 2022</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Prototyped and shipped 12 marketing sites with modern CSS.</li>
+                                <li>Introduced design tokens; unified colors and spacing across brands.</li>
+                                <li>Mentored 3 interns on semantic HTML and CSS architecture.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!--Projects-->
+                    <section class="section" aria-labelledby="projects-title">
+                        <h2 id="projects-title">Selected Projects</h2>
+
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Portfolio Website</div>
+                                <div class="place">Personal</div>
+                                <div class="when">2024</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Built a fast static site; score 95+ on Lighthouse Performance.</li>
+                                <li>Deployed with CI/CD to Netlify; automated previews for PRs.</li>
+                            </ul>
+                        </div>
+
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Design System Demo</div>
+                                <div class="place">Open Source</div>
+                                <div class="when">2023</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Token-based theming with pure CSS variables and custom properties.</li>
+                                <li>Documented usage in Storybook; onboarded team in 1 week.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!--Education-->
+                    <section class="section" aria-labelledby="education-title">
+                        <h2 id="education-title">Education</h2>
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">B.Sc. in Computer Science</div>
+                                <div class="place">University Name</div>
+                                <div class="when">2016 — 2020</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Graduated with Honors. Coursework: Data Structures, HCI, Databases.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!--Certificates-->
+                    <section class="section" aria-labelledby="certs-title">
+                        <h2 id="certs-title">Certifications</h2>
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Responsive Web Design</div>
+                                <div class="place">freeCodeCamp</div>
+                                <div class="when">2023</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--Extras-->
+                    <section class="section" aria-labelledby="extras-title">
+                        <h2 id="extras-title">Volunteer & Extras</h2>
+                        <div class="item">
+                            <div class="top">
+                                <div class="role">Mentor</div>
+                                <div class="place">Local Coding Club</div>
+                                <div class="when">2022 — Present</div>
+                            </div>
+                            <ul class="clean">
+                                <li>Weekly sessions helping beginners ship their first web pages.</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <!-- End Main column //////////////////////////////////////////////////////////////////////-->
+
+            </div>
+
+            <!-- ── Body: Sidebar + Main content ── //////////////////////////////////////////////////////-->
+
+        </article>
+    </main>
+    <script>
+        (function () {
+            const STORAGE_KEY = 'theme';                         // localStorage key
+            const root = document.documentElement;               // <html>
+            const btn = document.getElementById('themeToggle'); // toggle button
+
+            // Load saved preference and apply token set if present
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved === 'light' || saved === 'dark') {
+                root.setAttribute('data-theme', saved);
+            }
+
+            // Apply + persist + sync accessible state/label
+            function applyTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                localStorage.setItem(STORAGE_KEY, theme);
+                btn.setAttribute('aria-pressed', String(theme === 'dark'));        // reflect state
+                btn.querySelector('span').textContent = theme === 'dark'
+                    ? 'Light Mode' : 'Dark Mode';                                    // user-friendly label
+            }
+
+            // Initialize UI from current attribute or default to light
+            applyTheme(root.getAttribute('data-theme') || 'light');
+
+            // Click handler flips theme
+            btn.addEventListener('click', () => {
+                const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(next);
+            });
+        })();
+    </script>
+</body>
+
+</html>

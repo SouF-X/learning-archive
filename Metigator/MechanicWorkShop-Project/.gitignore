@@ -1,0 +1,20 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+src/**/bin/
+src/**/obj/
+
+appsettings.Development.json
+
+*.db
+*.log
+
+# Publish artifacts and local log archives
+.publish/
+*.zip

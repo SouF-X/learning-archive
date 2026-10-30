@@ -1,0 +1,5 @@
+@baseUrl = https://localhost:7071
+
+### 
+GET {{baseUrl}}/weather/city/cairo 
+

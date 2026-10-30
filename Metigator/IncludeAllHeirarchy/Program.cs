@@ -1,0 +1,40 @@
+﻿using IncludeAllHeirarchy.Data;
+using IncludeAllHeirarchy.Entities;
+
+namespace IncludeAllHeirarchy
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            var participant1 = new Individual
+            {
+                Id = 1,
+                FName = "Ahmad",
+                LName = "Ali",
+                University = "JUST",
+                YearOfGraduation = 2024,
+                IsIntern = false
+            };
+
+            var participant2 = new Coporate
+            {
+                Id = 2,
+                FName = "Ahmad",
+                LName = "Ali",
+                Company = "Metigator",
+                JobTitle = "Developer"
+            };
+
+            using (var context = new AppDbContext())
+            {
+                context.Participants.Add(participant1);
+                context.Participants.Add(participant2);
+                context.SaveChanges();
+            }
+
+
+            Console.ReadKey();
+        }
+    }
+}

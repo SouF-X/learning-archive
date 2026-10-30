@@ -1,0 +1,37 @@
+{
+  "runId": "2d8327af",
+  "agent": "researcher",
+  "task": "Research as of 2026 the genuinely free-forever hosting options for a Dockerized ASP.NET Core 9 monolith requiring a persistent SQL Server database, public HTTPS URL, low traffic demo. Compare platform/free plan limits, sleeping, SQL Server availability. Also assess practical approach migrating EF Core app from SQL Server to free PostgreSQL (Render/Supabase/Neon) and which platform combination is easiest. Cite sources/URLs and provide a recommendation. No code changes.\n\n---\n**Output:**\nWrite your findings to exactly this path: C:\\Users\\Acer\\Desktop\\MechanicWorkShop-Project\\.pi-subagents\\artifacts\\outputs\\2d8327af\\research.md\nThis path is authoritative for this run.\nIgnore any other output filename or output path mentioned elsewhere, including output destinations in the base agent prompt, system prompt, or task instructions.",
+  "exitCode": 0,
+  "usage": {
+    "input": 55829,
+    "output": 6342,
+    "cacheRead": 124416,
+    "cacheWrite": 0,
+    "cost": 0.2658065,
+    "turns": 8
+  },
+  "model": "openai-codex/gpt-5.6-terra:medium",
+  "attemptedModels": [
+    "openai-codex/gpt-5.6-terra:medium"
+  ],
+  "modelAttempts": [
+    {
+      "model": "openai-codex/gpt-5.6-terra:medium",
+      "success": true,
+      "exitCode": 0,
+      "usage": {
+        "input": 55829,
+        "output": 6342,
+        "cacheRead": 124416,
+        "cacheWrite": 0,
+        "cost": 0.2658065,
+        "turns": 8
+      }
+    }
+  ],
+  "durationMs": 152717,
+  "toolCount": 18,
+  "transcriptPath": "C:\\Users\\Acer\\Desktop\\MechanicWorkShop-Project\\.pi-subagents\\artifacts\\2d8327af_researcher_0_transcript.jsonl",
+  "timestamp": 1784157979097
+}

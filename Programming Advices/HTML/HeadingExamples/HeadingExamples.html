@@ -1,0 +1,552 @@
+<!doctype html>
+
+<html class="dark" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Midnight Obsidian ERP - Gestion des Fournisseurs</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#490013",
+              "on-tertiary-fixed": "#39000e",
+              "inverse-surface": "#fcf8f8",
+              "secondary-dim": "#d18aee",
+              "on-tertiary-fixed-variant": "#711229",
+              "on-surface": "#ffffff",
+              "primary-dim": "#9c42f4",
+              "secondary-fixed": "#f0c1ff",
+              primary: "#ca98ff",
+              secondary: "#e097fd",
+              "on-secondary-fixed-variant": "#743391",
+              "tertiary-fixed-dim": "#fa7c8d",
+              "tertiary-container": "#f7798b",
+              "inverse-on-surface": "#565554",
+              "on-primary-container": "#350062",
+              "secondary-fixed-dim": "#e9aeff",
+              "on-primary-fixed": "#000000",
+              "on-tertiary": "#62041f",
+              "on-surface-variant": "#adaaaa",
+              "on-secondary-container": "#efc0ff",
+              "surface-container": "#1a1919",
+              "surface-container-low": "#131313",
+              "on-error-container": "#ffb2b9",
+              "error-dim": "#d73357",
+              "primary-container": "#c185ff",
+              "inverse-primary": "#8523dd",
+              "tertiary-fixed": "#ff909e",
+              "on-primary": "#46007d",
+              "surface-bright": "#2c2c2c",
+              "primary-fixed-dim": "#b772ff",
+              "on-primary-fixed-variant": "#420078",
+              "surface-container-lowest": "#000000",
+              "primary-fixed": "#c185ff",
+              "surface-container-high": "#201f1f",
+              "surface-tint": "#ca98ff",
+              "on-background": "#ffffff",
+              "on-secondary": "#520c70",
+              "on-secondary-fixed": "#540f72",
+              tertiary: "#ff8b9a",
+              "surface-variant": "#262626",
+              "on-tertiary-container": "#4d0015",
+              surface: "#0e0e0e",
+              outline: "#777575",
+              "tertiary-dim": "#f47788",
+              "outline-variant": "#494847",
+              "error-container": "#a70138",
+              "secondary-container": "#692886",
+              "surface-dim": "#0e0e0e",
+              background: "#0e0e0e",
+              "surface-container-highest": "#262626",
+              error: "#ff6e84",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-manrope {
+        font-family: "Manrope", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-panel {
+        backdrop-filter: blur(40px);
+      }
+      .ghost-border {
+        border: 1px solid rgba(73, 72, 71, 0.15);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface overflow-hidden h-screen flex">
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 z-50 bg-neutral-900 shadow-2xl shadow-black/50 flex flex-col py-8 font-manrope text-sm font-medium"
+    >
+      <div class="px-6 mb-10 flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary-dim flex items-center justify-center shadow-[0_0_20px_rgba(156,66,244,0.4)]"
+        >
+          <span class="material-symbols-outlined text-black font-bold"
+            >factory</span
+          >
+        </div>
+        <div>
+          <h1
+            class="text-white font-black tracking-tighter text-lg leading-tight"
+          >
+            Midnight
+          </h1>
+          <p
+            class="text-neutral-500 text-[10px] uppercase tracking-widest font-bold"
+          >
+            Management
+          </p>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-1 px-4">
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all active:translate-x-1 duration-150"
+          href="#"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-white bg-purple-600/10 border-r-2 border-purple-500 transition-all active:translate-x-1 duration-150"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >factory</span
+          >
+          <span>Fournisseurs</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all active:translate-x-1 duration-150"
+          href="#"
+        >
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span>Commandes</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all active:translate-x-1 duration-150"
+          href="#"
+        >
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span>Stocks</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all active:translate-x-1 duration-150"
+          href="#"
+        >
+          <span class="material-symbols-outlined">payments</span>
+          <span>Finance</span>
+        </a>
+      </nav>
+      <div class="mt-auto px-4 space-y-1">
+        <button
+          class="w-full mb-6 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed py-3 rounded-md font-bold text-xs tracking-tight hover:shadow-[0_0_15px_rgba(202,152,255,0.3)] transition-all"
+        >
+          Nouveau Fournisseur
+        </button>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">help</span>
+          <span>Aide</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-neutral-500 hover:text-neutral-300 hover:bg-neutral-800 transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span>Déconnexion</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Workspace -->
+    <main class="flex-1 ml-64 flex flex-col min-h-screen bg-surface relative">
+      <!-- TopNavBar -->
+      <header
+        class="fixed top-0 right-0 left-64 z-40 h-16 bg-neutral-950/60 backdrop-blur-xl flex justify-between items-center px-8 shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+      >
+        <div class="flex-1 max-w-xl">
+          <div class="relative group">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-purple-400 transition-colors"
+              >search</span
+            >
+            <input
+              class="w-full bg-surface-container-low border-none rounded-full pl-11 pr-4 py-2 text-sm focus:ring-1 focus:ring-purple-400/50 text-on-surface placeholder-neutral-600 transition-all"
+              placeholder="Rechercher un fournisseur, un ICE..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-4 text-neutral-400">
+            <button class="hover:text-purple-400 transition-colors relative">
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-0 right-0 w-2 h-2 bg-purple-500 rounded-full border-2 border-neutral-950"
+              ></span>
+            </button>
+            <button class="hover:text-purple-400 transition-colors">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+          </div>
+          <div class="h-8 w-[1px] bg-neutral-800"></div>
+          <div class="flex items-center gap-3">
+            <div class="text-right">
+              <p class="text-xs font-bold text-white leading-none">
+                Alex Morgan
+              </p>
+              <p
+                class="text-[10px] text-neutral-500 uppercase tracking-tighter"
+              >
+                Admin Atelier
+              </p>
+            </div>
+            <img
+              alt="User profile"
+              class="w-10 h-10 rounded-full object-cover ghost-border"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBud9N0GE55mgboayFLeDHzy_-eKcKnmW0dCAI7vVWscln2uibW2nO-6LodMxHA13INpo01N-ILlmDijYew79yUSHaQDeA9Ke5BNLWPq0seKpRImbxCFUPnp9WUOonPBC_5FYXW5-v-meWsRBIHtiB8MfmZa8au_jcSljx0bh34iPsE-r1SpBdCGtw44WX87kL0-k44sHGNK8oKPXnpK9fK0Q0TQNeaqrQaxZR0e3KFJ2bvEwHAiZ1KWU9jc1kJGr0nyk6z5-IPJU"
+            />
+          </div>
+        </div>
+      </header>
+      <!-- Content Canvas -->
+      <div class="mt-16 p-8 flex-1 overflow-y-auto scroll-smooth bg-surface">
+        <!-- Page Header Area -->
+        <div class="mb-10 flex items-end justify-between">
+          <div>
+            <h2
+              class="text-4xl font-manrope font-extrabold tracking-tighter text-white mb-6"
+            >
+              Gestion des Fournisseurs
+            </h2>
+            <!-- Stats Card -->
+            <div
+              class="bg-surface-container-low px-6 py-4 rounded-xl ghost-border inline-flex flex-col gap-1"
+            >
+              <p
+                class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest"
+              >
+                Total Fournisseurs
+              </p>
+              <div class="flex items-baseline gap-2">
+                <span
+                  class="text-2xl font-manrope font-black text-white leading-none"
+                  >124</span
+                >
+                <span class="text-[10px] text-purple-400 font-bold">+12%</span>
+              </div>
+            </div>
+          </div>
+          <!-- Action Button -->
+          <button
+            class="flex items-center gap-2 bg-gradient-to-r from-primary-dim to-primary text-black font-bold px-8 py-4 rounded-xl hover:shadow-[0_0_30px_rgba(156,66,244,0.3)] transition-all transform active:scale-95 text-sm mb-1"
+          >
+            <span class="material-symbols-outlined text-lg">add</span>
+            <span>Nouveau Fournisseur</span>
+          </button>
+        </div>
+        <!-- Main Data Table Section -->
+        <div
+          class="bg-surface-container-low rounded-xl overflow-hidden shadow-2xl"
+        >
+          <div
+            class="p-6 border-b border-neutral-800 flex items-center justify-between"
+          >
+            <h3 class="text-white font-bold font-manrope">
+              Annuaire des Partenaires
+            </h3>
+            <div class="flex gap-2">
+              <button
+                class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold text-neutral-300 hover:text-white transition-colors"
+              >
+                Filtrer
+              </button>
+              <button
+                class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold text-neutral-300 hover:text-white transition-colors"
+              >
+                Exporter CSV
+              </button>
+            </div>
+          </div>
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-high">
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  Nom du Fournisseur
+                </th>
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  ICE
+                </th>
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  Adresse
+                </th>
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  Ville
+                </th>
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  Contact Principal
+                </th>
+                <th
+                  class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-neutral-500"
+                >
+                  Téléphone
+                </th>
+                <th class="px-6 py-4 text-right"></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-800/50">
+              <!-- Row 1 -->
+              <tr class="hover:bg-neutral-800/30 transition-colors group">
+                <td class="px-6 py-5">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center text-xs font-bold text-purple-400"
+                    >
+                      TP
+                    </div>
+                    <span class="text-white font-bold tracking-tight"
+                      >TechParts SA</span
+                    >
+                  </div>
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  001548236000084
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  12 Rue de l'Innovation
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">Paris</td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Jean Dupont
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  +33 1 45 67 89 00
+                </td>
+                <td class="px-6 py-5 text-right">
+                  <button
+                    class="text-neutral-500 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+              <!-- Row 2 -->
+              <tr class="hover:bg-neutral-800/30 transition-colors group">
+                <td class="px-6 py-5">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center text-xs font-bold text-purple-400"
+                    >
+                      MP
+                    </div>
+                    <span class="text-white font-bold tracking-tight"
+                      >MecanoPro</span
+                    >
+                  </div>
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  002874119000072
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  45 Avenue des Industries
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">Lyon</td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Sophie Laurent
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  +33 4 72 00 11 22
+                </td>
+                <td class="px-6 py-5 text-right">
+                  <button
+                    class="text-neutral-500 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+              <!-- Row 3 -->
+              <tr class="hover:bg-neutral-800/30 transition-colors group">
+                <td class="px-6 py-5">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center text-xs font-bold text-purple-400"
+                    >
+                      GA
+                    </div>
+                    <span class="text-white font-bold tracking-tight"
+                      >Global Auto</span
+                    >
+                  </div>
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  001992384000015
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  78 Boulevard du Port
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Marseille
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Marc Antoine
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  +33 4 91 33 44 55
+                </td>
+                <td class="px-6 py-5 text-right">
+                  <button
+                    class="text-neutral-500 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+              <!-- Row 4 -->
+              <tr class="hover:bg-neutral-800/30 transition-colors group">
+                <td class="px-6 py-5">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="w-8 h-8 rounded bg-neutral-800 flex items-center justify-center text-xs font-bold text-purple-400"
+                    >
+                      ES
+                    </div>
+                    <span class="text-white font-bold tracking-tight"
+                      >EuroSystèmes</span
+                    >
+                  </div>
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  003345712000096
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  5 Place de l'Europe
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Toulouse
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant text-sm">
+                  Léa Martin
+                </td>
+                <td class="px-6 py-5 text-on-surface-variant font-mono text-xs">
+                  +33 5 61 77 88 99
+                </td>
+                <td class="px-6 py-5 text-right">
+                  <button
+                    class="text-neutral-500 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Pagination -->
+          <div
+            class="p-4 bg-surface-container-high flex items-center justify-between"
+          >
+            <p
+              class="text-[10px] font-bold text-neutral-500 uppercase tracking-widest"
+            >
+              Affichage 1-4 sur 124 fournisseurs
+            </p>
+            <div class="flex gap-1">
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low text-neutral-500 hover:text-white transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-primary text-black font-bold text-xs"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low text-neutral-400 hover:text-white font-bold text-xs"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low text-neutral-400 hover:text-white font-bold text-xs"
+              >
+                3
+              </button>
+              <span class="px-2 text-neutral-600">...</span>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low text-neutral-400 hover:text-white font-bold text-xs"
+              >
+                31
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-surface-container-low text-neutral-500 hover:text-white transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Decorative background elements -->
+      <div
+        class="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full pointer-events-none"
+      ></div>
+      <div
+        class="fixed bottom-0 left-64 -z-10 w-[400px] h-[400px] bg-secondary-container/5 blur-[120px] rounded-full pointer-events-none"
+      ></div>
+    </main>
+  </body>
+</html>

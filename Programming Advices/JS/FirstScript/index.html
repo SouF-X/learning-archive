@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Async Search UI</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="card">
+        <!--──────────────────────────────────────────────
+      │ Code Overview
+      │──────────────────────────────────────────────
+      │ Purpose        → Real-time search UI using async/await
+      │ Layout         → Single HTML file (modern UI)
+      │ Use Cases      → Live search, debounce, cancel requests
+      │ Key Properties → async/await, debounce, AbortController
+      └──────────────────────────────────────────────-->
+
+        <h2 id="heading">Live User Search</h2>
+        <p class="paragraph">
+          this is a paragraph
+        </p class="paragraph">      
+          <p>
+          this is a paragraph
+        </p>      
+          <p class="paragraph">
+          this is a paragraph
+        </p>
+
+        <button>this is a button</button>
+
+        <script>
+          const btn = document.querySelector("button");
+          let Title = document.getElementById("heading");
+          let parag = document.querySelector(".paragraph");
+          let paragraphs = document.querySelectorAll("p");
+
+          btn.addEventListener("click", () => {
+            Title.textContent = "HEADING CHANGED";
+            parag.textContent = "FIRST PARAGRAPH CHANGED";
+            
+            paragraphs.forEach(p => {
+              p.style.color = "red";
+            })
+          })
+        </script>
+  </body>
+</html>

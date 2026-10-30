@@ -1,0 +1,209 @@
+// Delete Client By Account Number
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+
+const string ClientsFileName = "Clients.txt";
+
+struct sClient
+{
+	string AccountNumber;
+	string PinCode;
+	string Name;
+	string Phone;
+	double Balance;
+	bool MarkForDelete = false;
+};
+
+string ReadClientAccountNumber()
+{
+	string Number;
+	cout << "Please enter AccountNumber? ";
+	cin >> Number;
+	return Number;
+}
+
+vector <string> Split(string S1, string Delim)
+{
+	vector <string> vString;
+	short pos = 0;
+	string sWord;
+
+	while ((pos = S1.find(Delim)) != std::string::npos)
+	{
+		sWord = S1.substr(0, pos);
+		if (sWord != "")
+		{
+			vString.push_back(sWord);
+		}
+
+		S1.erase(0, pos + Delim.length());
+	}
+
+	if (S1 != "")
+	{
+		vString.push_back(S1);
+	}
+
+	return vString;
+}
+
+sClient ConvertLineDataToRecord(string Line, string Seperator = "#//#")
+{
+	sClient ClientData;
+	vector <string> vString = Split(Line, Seperator);
+
+
+	ClientData.AccountNumber = vString[0];
+	ClientData.PinCode = vString[1];
+	ClientData.Name = vString[2];
+	ClientData.Phone = vString[3];
+	ClientData.Balance = stod(vString[4]);
+
+	return ClientData;
+}
+
+string ConvertRecordToLine(sClient Client, string Seperator = "#//#")
+{
+	string stClientRecord = "";
+
+	stClientRecord += Client.AccountNumber + Seperator;
+	stClientRecord += Client.PinCode + Seperator;
+	stClientRecord += Client.Name + Seperator;
+	stClientRecord += Client.Phone + Seperator;
+	stClientRecord += to_string(Client.Balance);
+
+	return stClientRecord;
+}
+
+void PrintClientRecord(sClient Client)
+{
+	cout << "\nThe flowwing are the client details:\n";
+
+	cout << "Accout Number   : " << Client.AccountNumber << endl;
+	cout << "Pin Code        : " << Client.PinCode << endl;
+	cout << "Name            : " << Client.Name << endl;
+	cout << "Phone           : " << Client.Phone << endl;
+	cout << "Account Balance : " << Client.Balance << endl;
+}
+
+vector <sClient> LoadClientDataFromFile(string FileName)
+{
+	vector <sClient> vClients;
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::in);
+
+	if (MyFile.is_open())
+	{
+		string Line;
+		sClient Client;
+
+		while (getline(MyFile, Line))
+		{
+			Client = ConvertLineDataToRecord(Line);
+			vClients.push_back(Client);
+		}
+
+		MyFile.close();
+
+	}
+
+	return vClients;
+}
+
+bool FindClientByAccountNumber(string AccountNumber, vector <sClient> vClients, sClient& Client)
+{
+	for (sClient C : vClients)
+	{
+		if (C.AccountNumber == AccountNumber)
+		{
+			Client = C;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool MarkClientForDeleteByAccountNumber(string AccountNumber, vector <sClient>& vClients)
+{
+	for (sClient& C : vClients)
+	{
+		if (C.AccountNumber == AccountNumber)
+		{
+			C.MarkForDelete = true;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+vector <sClient> SaveClientDataToFile(string FileName, vector <sClient> vClients)
+{
+	fstream MyFile;
+	MyFile.open(FileName, ios::out);
+
+	string DataLine;
+
+	if (MyFile.is_open())
+	{
+		for (sClient C : vClients)
+		{
+			if (C.MarkForDelete == false)
+			{
+				DataLine = ConvertRecordToLine(C);
+				MyFile << DataLine << endl;
+			}
+		}
+
+		MyFile.close();
+	}
+
+	return vClients;
+}
+
+bool DeleteClientByAccountNumber(string AccountNumber, vector <sClient>& vClients)
+{
+	sClient Client;
+	char Answer = 'n';
+
+	if (FindClientByAccountNumber(AccountNumber, vClients, Client))
+	{
+		PrintClientRecord(Client);
+		
+		cout << "\n\nAre you sure you want delete this client? y/n ? ";
+		cin >> Answer;
+
+		if (Answer == 'y' || Answer == 'Y')
+		{
+			MarkClientForDeleteByAccountNumber(AccountNumber, vClients);
+			SaveClientDataToFile(ClientsFileName, vClients);
+
+			vClients = LoadClientDataFromFile(ClientsFileName);
+
+			cout << "\n\nClient Deleted Successfully.\n";
+			return true;
+		}
+	}
+	else
+	{
+		cout << "\nClient with Accoutn Number (" << AccountNumber << ") is Not Found!\n";
+		return false;
+	}
+}
+
+int main()
+{
+	vector <sClient> vClients = LoadClientDataFromFile(ClientsFileName);
+	string AccountNumber = ReadClientAccountNumber();
+
+	DeleteClientByAccountNumber(AccountNumber, vClients);
+
+	return 0;
+}

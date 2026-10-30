@@ -1,0 +1,19 @@
+{"@t":"2026-01-29T22:01:59.3850045Z","@mt":"Seq {SeqVersion} running on OS {OSCaption}","SeqVersion":"2025.2.15571","OSCaption":"Ubuntu 22.04.5 LTS","SourceContext":"Seq.Diagnostics.Logging.EnvironmentInformationWriter"}
+{"@t":"2026-01-29T22:01:59.7890483Z","@mt":"Seq listening on {ListenUris}","ListenUris":["http://localhost/","https://localhost/","http://localhost:5341/","https://localhost:45341/"]}
+{"@t":"2026-01-29T22:01:59.7966427Z","@mt":"Opening event store at {StreamPath}","StreamPath":"/data/Stream/stream.flare","SourceContext":"Seq.Engine.Cluster.NativeStorage"}
+{"@t":"2026-01-29T22:01:59.9124662Z","@mt":"Opening metastore {MetastorePath}","MetastorePath":"/data/Documents/metastore.flare","SourceContext":"Seq.Metastore.Native.NativeDocumentStore"}
+{"@t":"2026-01-29T22:02:00.0443540Z","@mt":"Applying migration {MigrationName}","MigrationName":"Clear sessions without CSRF tokens","SourceContext":"Seq.Metastore.Native.NativeDocumentStore"}
+{"@t":"2026-01-29T22:02:00.0867569Z","@mt":"Storage subsystem available"}
+{"@t":"2026-01-29T22:02:00.0911020Z","@mt":"Loaded key {XmlKeyId} with friendly name {FriendlyName}","XmlKeyId":"xmlkey-18","FriendlyName":"key-f2094bb1-04a8-4f40-a2bb-35f7b47c6e8f"}
+{"@t":"2026-01-29T22:02:00.0940651Z","@mt":"Storing new key {FriendlyName}","FriendlyName":"key-bcec4d3c-a351-4e68-9590-92c6e78feb4f"}
+{"@t":"2026-01-29T22:02:00.1040849Z","@mt":"Loaded key {XmlKeyId} with friendly name {FriendlyName}","XmlKeyId":"xmlkey-18","FriendlyName":"key-f2094bb1-04a8-4f40-a2bb-35f7b47c6e8f"}
+{"@t":"2026-01-29T22:02:00.1045931Z","@mt":"Loaded key {XmlKeyId} with friendly name {FriendlyName}","XmlKeyId":"xmlkey-33","FriendlyName":"key-bcec4d3c-a351-4e68-9590-92c6e78feb4f"}
+{"@t":"2026-01-29T22:02:00.1180558Z","@mt":"Ingestion enabled","SourceContext":"Seq.Engine.Cluster.NativeStorage"}
+{"@t":"2026-01-29T22:02:10.1851285Z","@mt":"Authentication is disabled. To protect your system, enable authentication in Settings > Users.","@l":"Warning","SystemComponent":"Authentication","SourceContext":"Seq.Diagnostics.Status.SystemNotificationDispatcher"}
+{"@t":"2026-01-29T22:03:00.2430041Z","@sp":"e1f631fbf9bca528","@tr":"50882af3d1367874e36d94d0a1699dec","@mt":"Wrote {IndexSetCount} index sets","IndexSetCount":0,"SourceContext":"Seq.Server.Features.Indexing.EventStoreIndexer"}
+{"@t":"2026-01-29T22:03:00.2445137Z","@sp":"e1f631fbf9bca528","@tr":"50882af3d1367874e36d94d0a1699dec","@mt":"Indexing with {Allocated:0.000} ms allowance","@r":["600000.000"],"Allocated":600000,"@st":"2026-01-29T22:03:00.1710995Z","SourceContext":"Seq.Server.Features.Indexing.EventStoreIndexer"}
+{"@t":"2026-01-29T22:03:54.7967697Z","@mt":"Termination signal received"}
+{"@t":"2026-01-29T22:03:54.7987857Z","@mt":"Stopping {Tasks} scheduled leader tasks","Tasks":18,"SourceContext":"Seq.Server.Tasks.TaskRunner"}
+{"@t":"2026-01-29T22:03:54.8004049Z","@mt":"Stopping input channel","SourceContext":"Seq.Server.Features.Apps.Inputs.InputChannel"}
+{"@t":"2026-01-29T22:03:55.1796112Z","@mt":"Shutting down input channel; {AcceptedCount} queued events will be written","AcceptedCount":0,"SourceContext":"Seq.Server.Features.Apps.Inputs.InputChannel"}
+{"@t":"2026-01-29T22:03:55.1839693Z","@mt":"Stopping broadcast channel","SourceContext":"Seq.Engine.Broadcast.BroadcastChannel"}

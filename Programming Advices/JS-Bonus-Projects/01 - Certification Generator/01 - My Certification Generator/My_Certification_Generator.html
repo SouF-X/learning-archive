@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- ✅ Makes the page responsive on mobiles/tablets ///////////////////////////////////////////////-->
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="stylesheet" href="My_Certification_Generator.css" />
+
+    <script src="My_Certification_Generator.js" defer></script>
+
+    <!-- ✅ Browser tab title ///////////////////////////////////////////////-->
+
+    <title>My Certification Generator — JS Bonus Project</title>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ======================================================
+           ✅ START LEFT SIDE: Form Panel (user inputs)
+           ====================================================== -->
+
+      <div class="panel" id="formPanel">
+        <h2>Certificate Fields</h2>
+        <p class="hint">
+          Type values below — the vertificate update instantly.
+          <br />
+          Validation rules apply. Print is enabled only when all fields are ✅
+          valid.
+        </p>
+
+        <!-- ✅ Start Student Name input group ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowName">
+          <label for="studentName">Student Name</label>
+          <input
+            id="studentName"
+            type="text"
+            placeholder="e.g., Soufiane Boudchich"
+            autocomplete="off"
+          />
+          <div class="error">Name is required (min 3 characters).</div>
+        </div>
+
+        <!-- ✅ End Student Name input group ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Course Name input group ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowCourse">
+          <label for="courseName">Course Name</label>
+          <textarea
+            id="courseName"
+            placeholder="e.g., Goad Setting: Crafting and Achieving Your Objectives."
+          ></textarea>
+          <div class="error">Course name is required (min 6 characters).</div>
+        </div>
+
+        <!-- ✅ End Course Name input group ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Instructor Name input group ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowInstructor">
+          <label for="instructorName">Instructor Name</label>
+          <input
+            id="instructorName"
+            type="text"
+            placeholder="e.g., Dr. Mohammed Abu-Hadhoud"
+            autocomplete="off"
+          />
+          <div class="error">
+            Instructor name is required (min 3 characters).
+          </div>
+        </div>
+
+        <!-- ✅ End Instructor Name input group ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Signature image upload ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowSignature">
+          <label for="signatureFile">Signature Image</label>
+          <input id="signatureFile" type="file" accept="image/*" />
+          <div class="fileHint">
+            Upload a PNG/JPG/WebP. It will update the signature instantly.
+          </div>
+          <div class="error">Please upload a signature image.</div>
+        </div>
+
+        <!-- ✅ End Signature image upload ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Issued date ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowIssued">
+          <label for="issuedDate">Issued Date</label>
+          <input id="issuedDate" type="date" />
+          <div class="error">Please select an issued date.</div>
+        </div>
+
+        <!-- ✅ End Issued date ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Serial number ///////////////////////////////////////////////-->
+
+        <div class="row" id="rowSerial">
+          <label for="serial">Certificate Serial</label>
+          <input
+            id="serial"
+            type="text"
+            placeholder="e.g., MD-2025-000123"
+            autocomplete="off"
+          />
+          <div class="error">
+            Serial is required (letters/numbers/- only, min 6).
+          </div>
+        </div>
+
+        <!-- ✅ End Serial number ///////////////////////////////////////////////-->
+
+        <!-- ✅ Start Actions ///////////////////////////////////////////////-->
+
+        <div class="actions">
+          <button type="button" id="btnFillDemo">Fill Demo</button>
+          <button type="button" id="btnReset">Reset</button>
+          <button type="button" class="primary" id="btnPrint">
+            Print A4 Landscape
+          </button>
+        </div>
+
+        <!-- ✅ End Actions ///////////////////////////////////////////////-->
+
+        <div class="status" id="statusLine"></div>
+      </div>
+
+      <!-- ======================================================
+           ✅ END LEFT SIDE: Form Panel (user inputs)
+           ====================================================== -->
+
+      <!-- ======================================================
+           ✅ START RIGHT SIDE: Preview Panel (certificate output)
+           ====================================================== -->
+      <div class="previewWrap">
+        <!-- ✅Start Toolbar above the certificate ///////////////////////////////////////////////-->
+
+        <div class="toolbar panel">
+          <div class="small">
+            Preview (Print will output ONLY the certificate)
+          </div>
+          <div class="small" id="validBadge">❌ Not ready to print</div>
+        </div>
+
+        <!-- ✅End Toolbar above the certificate ///////////////////////////////////////////////-->
+
+        <!-- ✅Start Certificate Preview ///////////////////////////////////////////////-->
+
+        <div class="mdc-cert" id="cert">
+          <div class="mdc-frame-outer">
+            <div class="mdc-frame-inner">
+              <!-- ✅Start META (top info) ///////////////////////////////////////////////-->
+
+              <table class="mdc-meta" width="100%">
+                <tr>
+                  <td class="mdc-metaCell mdc-left" width="60%">
+                    <div class="mdc-metaLabel">Issued Date</div>
+                    <div class="mdc-metaValue" id="certIssued">—</div>
+                  </td>
+                  <td class="mdc-metaCell mdc-right">
+                    <div class="mdc-metaLabel">Certificate Serial</div>
+                    <div class="mdc-metaValue mdc-mono" id="certSerial">—</div>
+                  </td>
+                </tr>
+              </table>
+              <!-- ✅ Start Header logo ///////////////////////////////////////////////-->
+
+              <div class="mdc-header">
+                <img class="mdc-logo" src="logo.png" alt="logo" />
+              </div>
+
+              <div class="mdc-title">Certificate of Completion</div>
+              <div class="mdc-subtitle">This is proudly presented to</div>
+
+              <!-- ✅ End Header logo ///////////////////////////////////////////////-->
+
+              <!-- ✅Start Student name will be injected here ///////////////////////////////////////////////-->
+
+              <div class="mdc-name" id="certName">Student Name</div>
+
+              <div class="mdc-text">for successfully completing</div>
+
+              <!-- ✅End Student name will be injected here ///////////////////////////////////////////////-->
+
+              <!-- ✅Start Course name will be injected here ///////////////////////////////////////////////-->
+
+              <div class="mdc-course" id="certCourse">
+                Course Name Goes Here
+              </div>
+
+              <div class="mdc-divider"></div>
+
+              <!-- End Course name will be injected here ///////////////////////////////////////////////-->
+
+              <!-- ✅Start  Seal + Signature ///////////////////////////////////////////////-->
+
+              <div class="mdc-bottom">
+                <table width="100%" class="mdc-bottomTable">
+                  <tr>
+                    <!-- ✅ Left: Seal ///////////////////////////////////////////////-->
+                    <td class="mdc-sealCol">
+                      <img
+                        class="mdc-sealImg"
+                        src="Certified.png"
+                        alt="Seal"
+                        width="110"
+                        height="110"
+                      />
+                    </td>
+                    <!-- ✅ Right: Signature + instructor name/////////////////////////////////////////////// -->
+
+                    <td class="mdc-sigCol">
+                      <!-- ✅ Signature image is changeable via JS ///////////////////////////////////////////////-->
+                      <img
+                        class="mdc-sigImg"
+                        id="certSignatureImg"
+                        src="DefaultSig.png"
+                        alt="Signature"
+                        width="250"
+                        height="100"
+                      />
+                      <div class="mdc-sigLine"></div>
+
+                      <!-- ✅ Instructor name will be injected here ///////////////////////////////////////////////-->
+
+                      <div class="mdc-sigName" id="certInstructor">
+                        Dr. Mohammed Abu-Hadhoud
+                      </div>
+
+                      <div class="mdc-sigSpacer">&nbsp;</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- ✅End Seal + Signature ///////////////////////////////////////////////-->
+
+              <!-- ✅ Website footer inside certificate /////////////////////////////////////////////// -->
+
+              <div class="mdc-footer">www.Website.com</div>
+
+              <!-- ✅End META (top info) ///////////////////////////////////////////////-->
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅End Certificate Preview ///////////////////////////////////////////////-->
+      </div>
+      <!-- ======================================================
+           ✅ END RIGHT SIDE: Preview Panel (certificate output)
+           ====================================================== -->
+    </div>
+  </body>
+</html>

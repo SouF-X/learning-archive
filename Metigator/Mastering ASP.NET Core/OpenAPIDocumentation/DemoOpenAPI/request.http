@@ -1,0 +1,106 @@
+@baseUrl = http://localhost:5151
+
+@projectId = A65395A2-0A3C-424B-A2BA-A6FC2CDF57B0
+@taskId = adceb36e-157d-405e-a612-f3fe2f991174
+@teamMember1 = 22222222-2222-2222-2222-222222222222
+@teamMember2 = 55555555-5555-5555-5555-555555555555
+
+@tokenProjectManager = "REPLACE_WITH_YOUR_TOKEN"
+
+### Get projects v1 ===========================
+GET {{baseUrl}}/api/v1/projects
+
+### Get projects v2 ===========================
+GET {{baseUrl}}/api/v2/projects
+
+### Get project v1 ===========================
+GET {{baseUrl}}/api/v1/projects/{{projectId}}
+
+### Get project v2 ===========================
+GET {{baseUrl}}/api/v2/projects/{{projectId}}
+
+### POST project =============================
+POST {{baseUrl}}/api/v1/projects
+Content-Type: application/json
+
+{
+  "name" : "soufiane",
+  "expectedStartDate": "2026-01-16T00:00:00Z",
+  "budget": 5000
+}
+
+### PUT project ==============================
+PUT {{baseUrl}}/api/projects/{{projectId}}
+Content-Type: application/json
+
+{ 
+  "name": "Boudchich",
+  "description": "Potential upgrade",
+  "expectedStartDate": "2025-06-05T00:00:00Z"
+}
+
+### DELETE project ==========================
+DELETE {{baseUrl}}/api/projects/{{projectId}}
+
+### PUT Budget ==============================
+PUT {{baseUrl}}/api/v1/projects/{{projectId}}/budget
+Content-Type: application/json
+
+{
+  "budget": 20000
+}
+
+
+### PUT Completion ==========================
+PUT {{baseUrl}}/api/v1/projects/{{projectId}}/completion
+Content-Type: application/json
+
+{ 
+  "endDate": "2025-06-30T00:00:00Z"
+}
+
+// === TASK ENDPOINTS ==================================================
+
+### POST Task =============================
+POST {{baseUrl}}/api/v1/projects/{{projectId}}/tasks
+Content-Type: application/json
+
+{
+  "title": "T4",
+  "description": "Initial wireframe",
+  "assignedUserId": "{{teamMember1}}"
+}
+
+### Get task v1 ===========================
+GET {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
+
+### PUT Task ==============================
+PUT {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
+Content-Type: application/json
+
+{ 
+  "title": "Updated UI 222",
+  "description": "Updated wireframe dsfdf",
+  "status": 1
+}
+
+### DELETE project ==========================
+DELETE {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
+
+### PUT Task Assignment ==============================
+PUT {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}/assignment
+Content-Type: application/json
+
+{
+  "taskId": "{{taskId}}",
+  "userId": "{{teamMember1}}"
+}
+
+### PUT Task Status ==============================
+PUT {{baseUrl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}/status
+Content-Type: application/json
+
+{
+  "taskId": "{{taskId}}",
+  "status": "Completed"
+}

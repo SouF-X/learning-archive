@@ -1,0 +1,46 @@
+﻿using IncludeAllHeirarchy.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IncludeAllHeirarchy.Data
+{
+    public partial class AppDbContext : DbContext
+    {
+
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Office> Offices { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Participant> Participants { get; set; }
+        public DbSet<Individual> Individuals { get; set; }
+        public DbSet<Coporate> Coporates { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<SectionSchedule> SectionSchedules { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var connectionString = config.GetSection("constr").Value;
+
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
+    }
+}

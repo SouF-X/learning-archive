@@ -1,0 +1,35 @@
+# Generated output, dependencies, IDE state, and transfer remnants
+**/.git/
+**/.vs/
+**/.vscode/
+**/bin/
+**/obj/
+**/packages/
+**/node_modules/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/build/
+**/dist/
+**/vendor/
+**/TestResults/
+**/.publish/
+*.mega
+**/tmp-build.log
+**/tmp-restore.log
+/Metigator/MechanicWorkShop-Project/deploy/
+/Metigator/MechanicWorkShop-Project/mechanicshop-deploy.zip
+/Metigator/MechanicWorkShop-Project/app_logs.zip
+
+# Keep real secrets out of future commits
+.env
+.env.local
+.env.production
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Stray Windows shell redirection artifact
+**/nul

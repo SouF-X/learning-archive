@@ -1,0 +1,28 @@
+@baseUrl = https://localhost:7007/identity
+
+### Login As Manager
+POST {{baseUrl}}/token/generate
+Content-Type: application/json
+
+{
+    "email": "pm@localhost",
+    "password": "REPLACE_WITH_YOUR_PASSWORD"
+}
+
+### Login As Labor
+POST {{baseUrl}}/token/generate
+Content-Type: application/json
+
+{
+    "email": "john.labor@localhost",
+    "password": "REPLACE_WITH_YOUR_PASSWORD"
+}
+
+### Refresh Token
+POST {{baseUrl}}/token/refresh-token
+Content-Type: application/json
+
+{
+    "ExpiredAccessToken": "REPLACE_WITH_YOUR_TOKEN",
+    "refreshToken": "REPLACE_WITH_YOUR_TOKEN"
+}

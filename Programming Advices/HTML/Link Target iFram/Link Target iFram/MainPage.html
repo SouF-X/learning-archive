@@ -1,0 +1,773 @@
+<!doctype html>
+
+<html class="light" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SophineWorkshop - Gestion des Clients</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .font-headline {
+        font-family: "Manrope", sans-serif;
+      }
+      .glass-header {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f2f4f7",
+              surface: "#f7f9fc",
+              "secondary-container": "#91f78e",
+              "surface-container-high": "#e6e8eb",
+              "on-tertiary-fixed-variant": "#7b2e12",
+              "tertiary-fixed-dim": "#ffb59d",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#e0e3e6",
+              "on-tertiary-fixed": "#390c00",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#002204",
+              "on-surface-variant": "#454652",
+              "on-primary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e0e3e6",
+              "on-secondary-fixed-variant": "#005313",
+              "inverse-primary": "#bdc2ff",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-container": "#8690ee",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#eff1f4",
+              "on-primary-fixed-variant": "#343d96",
+              "on-tertiary-container": "#e17c5a",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#00731e",
+              secondary: "#006e1c",
+              "surface-container": "#eceef1",
+              "inverse-surface": "#2d3133",
+              "surface-bright": "#f7f9fc",
+              "surface-dim": "#d8dadd",
+              error: "#ba1a1a",
+              tertiary: "#380b00",
+              "tertiary-container": "#5c1800",
+              "primary-fixed-dim": "#bdc2ff",
+              "error-container": "#ffdad6",
+              "primary-container": "#1a237e",
+              outline: "#767683",
+              background: "#f7f9fc",
+              "tertiary-fixed": "#ffdbd0",
+              "on-surface": "#191c1e",
+              "outline-variant": "#c6c5d4",
+              primary: "#000666",
+              "secondary-fixed": "#94f990",
+              "secondary-fixed-dim": "#78dc77",
+              "on-primary-fixed": "#000767",
+              "surface-tint": "#4c56af",
+              "on-background": "#191c1e",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface text-on-surface antialiased">
+    <!-- SideNavBar Shell -->
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col py-6 z-50 font-['Manrope'] antialiased"
+    >
+      <div class="px-6 mb-10 flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center overflow-hidden"
+        >
+          <img
+            alt="SophineWorkshop Logo"
+            class="w-6 h-6 invert"
+            data-alt="minimalist white workshop tool icon on deep navy circular background"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCto8bpkut_LOX0aNVDI7yUP5f_aGy2Xn7hqvWq0pbSCsH6EQ0WLOjtU4c8Xbw4px8b_aRa48WMUCehAPSfBeMncJcv9U3FXSAWNPpZkwqqwFN2SCskUtD41sSmsotOgloiYWvm-e27VhVuZwHoiGYYc6BvEHyA1CzPG5C4Q1J5ihXdH-fYWn19YBsdurecLEVmSrYj7YtJZ6ENT950ht3foXAaiCijwy9N4oVdO_QYmoLcCKWQQ62bPvCAslaaONN8wTxedpccxLM"
+          />
+        </div>
+        <div>
+          <div class="text-xl font-bold tracking-tight text-indigo-950">
+            SophineWorkshop
+          </div>
+          <div
+            class="text-[10px] uppercase tracking-widest text-slate-400 font-bold"
+          >
+            Management Suite
+          </div>
+        </div>
+      </div>
+      <nav class="flex-1 px-4 space-y-1">
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-200/50 transition-colors duration-150 group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[22px]">dashboard</span>
+          <span class="font-medium">Overview</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-200/50 transition-colors duration-150 group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[22px]">inventory_2</span>
+          <span class="font-medium">Fournisseurs</span>
+        </a>
+        <!-- Active Navigation State: Clients -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-indigo-700 font-semibold border-r-4 border-indigo-700 bg-slate-200/50 transition-colors duration-150 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[22px]"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >groups</span
+          >
+          <span class="font-medium">Clients</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-200/50 transition-colors duration-150 group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[22px]">package_2</span>
+          <span class="font-medium">Produits</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-indigo-600 hover:bg-slate-200/50 transition-colors duration-150 group"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[22px]">settings</span>
+          <span class="font-medium">Paramètres</span>
+        </a>
+      </nav>
+      <div class="px-4 mt-auto">
+        <a
+          class="flex items-center gap-3 px-3 py-3 rounded-xl bg-surface-container-high/50 hover:bg-surface-container-high transition-colors"
+          href="#"
+        >
+          <div class="w-8 h-8 rounded-full overflow-hidden bg-slate-300">
+            <img
+              alt="Admin Avatar"
+              class="w-full h-full object-cover"
+              data-alt="professional portrait of a creative workshop manager with glasses in bright natural light studio"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIHt3ujfKwIo1rai9cWXQ5lNJY6Zajyneo-TNLvD7COYW_yBpBsuQ6gtxGaLFP_B7fyt4GD1zldRDQUvZxuLW9AaYlwZWW36h_udbAQqr9HEnwW4rfVp-kcyaJO58ELoO0_GZH13kl3J2A57jvWmZDy3zryycOFEqfyCVelPU1PSXDnU2Qwuj1lr9Tgzsa0D29npEbwnoT-1JOK6dz1j2Eprio31wKimwXfesuJ9krAUghsxqLlrcDUKfEOruCzSuy9jL6mbmqHUk"
+            />
+          </div>
+          <div class="flex-1 overflow-hidden">
+            <p class="text-sm font-bold text-indigo-950 truncate">
+              Sophine Admin
+            </p>
+            <p class="text-xs text-slate-500 truncate">Profil</p>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 text-sm"
+            >more_vert</span
+          >
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 min-h-screen">
+      <!-- TopNavBar Shell -->
+      <header
+        class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-white/80 backdrop-blur-md flex items-center justify-between px-8 z-40 border-b border-slate-100 font-['Manrope'] font-medium"
+      >
+        <div class="flex items-center gap-4 flex-1 max-w-md">
+          <div class="relative w-full">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-indigo-600/20 text-sm transition-all"
+              placeholder="Rechercher un client..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <button
+            class="relative text-slate-500 hover:text-indigo-600 transition-opacity opacity-80 hover:opacity-100"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"
+            ></span>
+          </button>
+          <div class="h-6 w-[1px] bg-slate-200"></div>
+          <button
+            class="flex items-center gap-2 px-4 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg font-bold text-sm hover:bg-indigo-100 transition-colors"
+          >
+            <span class="material-symbols-outlined text-lg">add</span>
+            Nouveau Client
+          </button>
+        </div>
+      </header>
+      <!-- Page Content -->
+      <div class="pt-24 px-8 pb-12">
+        <!-- Page Header Section -->
+        <div class="mb-8 flex justify-between items-end">
+          <div>
+            <h1
+              class="text-3xl font-extrabold text-indigo-950 tracking-tight mb-2"
+            >
+              Gestion des Clients
+            </h1>
+            <p class="text-on-surface-variant text-sm font-body">
+              Gérez votre base de données clients et suivez leurs activités.
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              class="px-4 py-2 flex items-center gap-2 bg-surface-container-lowest text-on-surface font-medium text-sm rounded-lg shadow-sm hover:bg-surface-container-high transition-colors"
+            >
+              <span class="material-symbols-outlined text-lg"
+                >cloud_download</span
+              >
+              Exporter (CSV)
+            </button>
+          </div>
+        </div>
+        <!-- Dashboard Analytics Ribbon (Editorial Pattern) -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary"
+          >
+            <p
+              class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2"
+            >
+              Total Clients
+            </p>
+            <p class="text-3xl font-headline font-extrabold text-indigo-950">
+              1,284
+            </p>
+            <div
+              class="mt-2 flex items-center gap-1 text-secondary text-xs font-bold"
+            >
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              <span>+12.5%</span>
+            </div>
+          </div>
+          <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+            <p
+              class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2"
+            >
+              Clients Professionnels
+            </p>
+            <p class="text-3xl font-headline font-extrabold text-indigo-950">
+              423
+            </p>
+            <p class="mt-2 text-on-surface-variant text-xs">
+              33% du portefeuille
+            </p>
+          </div>
+          <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+            <p
+              class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2"
+            >
+              Ventes Moyenne
+            </p>
+            <p class="text-3xl font-headline font-extrabold text-indigo-950">
+              4.2k <span class="text-lg font-bold text-slate-400">DH</span>
+            </p>
+            <p class="mt-2 text-on-surface-variant text-xs">
+              Par client / Mois
+            </p>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-6 rounded-xl shadow-sm overflow-hidden relative group"
+          >
+            <img
+              class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:scale-105 transition-transform"
+              data-alt="abstract business networking background with soft blue connecting lines and dots"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB618ax_OPF80ERNhTEKLgs91Y8T6iALZsNpZJWP3UmDPAVlcjXz4S_BW2Lv5QVaZH0f9DlitqwXljQN1uiLp_bzKar5MUu8--oFw0YEtDCj9RFtwbVBj7o3MUJo6T7B3sq5Mzn9Z3Mu8gFFzEfSet4PWdQ4mzRW7xcLtoj-urQg-gdxeCg01LSh1UloWgd1QaZpTd3inazn-NIrvP7Kzl-VbCMciTSgsNftgzLgQXtm772_Gq4eFFEtLQ7cHDKWMiqRXW6_IvH14g"
+            />
+            <p
+              class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 relative z-10"
+            >
+              Nouveaux ce mois
+            </p>
+            <p
+              class="text-3xl font-headline font-extrabold text-indigo-950 relative z-10"
+            >
+              48
+            </p>
+            <div
+              class="mt-2 flex items-center gap-1 text-primary text-xs font-bold relative z-10"
+            >
+              <span class="material-symbols-outlined text-sm">history</span>
+              <span>Derniers 30 jours</span>
+            </div>
+          </div>
+        </div>
+        <!-- Data Grid (The Main Content) -->
+        <section class="bg-surface-container-low rounded-xl overflow-hidden">
+          <div
+            class="p-6 bg-surface-container-lowest border-b border-slate-100 flex items-center justify-between"
+          >
+            <div class="flex gap-4">
+              <button
+                class="px-4 py-2 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full"
+              >
+                Tous
+              </button>
+              <button
+                class="px-4 py-2 text-slate-500 hover:bg-slate-100 text-xs font-bold rounded-full transition-colors"
+              >
+                Particuliers
+              </button>
+              <button
+                class="px-4 py-2 text-slate-500 hover:bg-slate-100 text-xs font-bold rounded-full transition-colors"
+              >
+                Entreprises
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-400 font-medium"
+                >Filtrer par :</span
+              >
+              <select
+                class="bg-transparent border-none text-xs font-bold text-indigo-950 focus:ring-0 cursor-pointer"
+              >
+                <option>Dernière activité</option>
+                <option>Nom A-Z</option>
+                <option>Chiffre d'affaires</option>
+              </select>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="text-on-surface-variant uppercase text-[10px] tracking-widest font-bold"
+                >
+                  <th class="px-8 py-4 bg-surface-container-high/30">
+                    Nom du Client
+                  </th>
+                  <th class="px-6 py-4 bg-surface-container-high/30">Type</th>
+                  <th class="px-6 py-4 bg-surface-container-high/30">
+                    ICE / Identifiant
+                  </th>
+                  <th class="px-6 py-4 bg-surface-container-high/30">Ville</th>
+                  <th class="px-6 py-4 bg-surface-container-high/30">
+                    Téléphone
+                  </th>
+                  <th class="px-8 py-4 bg-surface-container-high/30 text-right">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-body">
+                <!-- Row 1 -->
+                <tr class="group hover:bg-white transition-colors">
+                  <td class="px-8 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-9 h-9 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs"
+                      >
+                        AM
+                      </div>
+                      <div>
+                        <p class="font-bold text-indigo-950 text-sm">
+                          Atlas Mobilité Sarl
+                        </p>
+                        <p class="text-[11px] text-slate-400">
+                          contact@atlasmo.ma
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold rounded-full"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >corporate_fare</span
+                      >
+                      Entreprise
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    001524388000092
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    Casablanca
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    +212 522 45 88 00
+                  </td>
+                  <td class="px-8 py-4 text-right">
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-indigo-600 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >edit</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-primary transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="group hover:bg-white transition-colors">
+                  <td class="px-8 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-9 h-9 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs"
+                      >
+                        YB
+                      </div>
+                      <div>
+                        <p class="font-bold text-indigo-950 text-sm">
+                          Yasmine Berrada
+                        </p>
+                        <p class="text-[11px] text-slate-400">
+                          yasmine.b@gmail.com
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-600 text-[11px] font-bold rounded-full"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >person</span
+                      >
+                      Particulier
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    BE142589
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    Marrakech
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    +212 661 22 33 44
+                  </td>
+                  <td class="px-8 py-4 text-right">
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-indigo-600 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >edit</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-primary transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr class="group hover:bg-white transition-colors">
+                  <td class="px-8 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-9 h-9 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-xs"
+                      >
+                        TC
+                      </div>
+                      <div>
+                        <p class="font-bold text-indigo-950 text-sm">
+                          Techno Coast Gmbh
+                        </p>
+                        <p class="text-[11px] text-slate-400">
+                          logistics@technocoast.de
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold rounded-full"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >corporate_fare</span
+                      >
+                      Entreprise
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    DE811122334
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    Tanger (Intl)
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    +49 40 1234567
+                  </td>
+                  <td class="px-8 py-4 text-right">
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-indigo-600 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >edit</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-primary transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="group hover:bg-white transition-colors">
+                  <td class="px-8 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-9 h-9 rounded-lg bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-xs"
+                      >
+                        OK
+                      </div>
+                      <div>
+                        <p class="font-bold text-indigo-950 text-sm">
+                          Omar Khalid
+                        </p>
+                        <p class="text-[11px] text-slate-400">
+                          omar.k@outlook.fr
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-600 text-[11px] font-bold rounded-full"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >person</span
+                      >
+                      Particulier
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    AA987654
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    Rabat
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    +212 654 99 88 77
+                  </td>
+                  <td class="px-8 py-4 text-right">
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-indigo-600 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >edit</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-primary transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="group hover:bg-white transition-colors">
+                  <td class="px-8 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-9 h-9 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs"
+                      >
+                        ML
+                      </div>
+                      <div>
+                        <p class="font-bold text-indigo-950 text-sm">
+                          Médi Logistique
+                        </p>
+                        <p class="text-[11px] text-slate-400">
+                          contact@medilog.ma
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold rounded-full"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >corporate_fare</span
+                      >
+                      Entreprise
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    001199334455667
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    Agadir
+                  </td>
+                  <td class="px-6 py-4 text-xs font-medium text-slate-600">
+                    +212 528 11 22 33
+                  </td>
+                  <td class="px-8 py-4 text-right">
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-indigo-600 transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >edit</span
+                      >
+                    </button>
+                    <button
+                      class="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-primary transition-all"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="p-4 bg-surface-container-lowest border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500"
+          >
+            <div>Affichage de 5 sur 1,284 clients</div>
+            <div class="flex items-center gap-1">
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-indigo-600 text-white font-bold"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                3
+              </button>
+              <span class="px-1">...</span>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                257
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Secondary Actions Bento Grid -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="bg-surface-container-high/30 p-8 rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-4"
+            >
+              <span class="material-symbols-outlined text-3xl"
+                >upload_file</span
+              >
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950 mb-2">
+              Importer une liste massive
+            </h3>
+            <p class="text-on-surface-variant text-sm mb-6 max-w-xs">
+              Intégrez vos clients depuis un fichier Excel ou CSV en quelques
+              secondes.
+            </p>
+            <button
+              class="px-6 py-2.5 bg-indigo-950 text-white font-bold rounded-lg hover:bg-indigo-900 transition-colors"
+            >
+              Démarrer l'import
+            </button>
+          </div>
+          <div
+            class="bg-indigo-950 p-8 rounded-2xl relative overflow-hidden text-white flex flex-col justify-end"
+          >
+            <img
+              class="absolute inset-0 w-full h-full object-cover opacity-20"
+              data-alt="team of professionals collaborating around a large wooden table in a bright modern office space"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOXTfnZbzRGQVT7r9IzWnVI0uO9P0Qr3MAW2y1lxXIQBQ14t7OTxWHw2RjC4S8zQ2ibmVVdtDUeA9Svduve9RIjZ2vPg5EfWKrfmQcTgF_bqNYmIwh1W58I6azKolDJMPYHzHnGIXxMZltUTCyNgi478lTXYRdYwHw3CwqS1_VGGFIzTqd1RH9ze16f-_YFCXhthGP4lnXmiGKOFR7FIXmN7BFIVMJdIUpPZvHPUXsu59Igkrm8W8dsNYAmtGo6HpSa68myhN0z5M"
+            />
+            <div class="relative z-10">
+              <span
+                class="px-3 py-1 bg-primary-container/30 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 inline-block"
+                >Nouveau</span
+              >
+              <h3 class="text-2xl font-bold mb-2">Segmentation IA</h3>
+              <p class="text-indigo-200/80 text-sm mb-6 max-w-sm">
+                Utilisez notre nouvel algorithme pour identifier automatiquement
+                vos clients les plus rentables.
+              </p>
+              <button
+                class="flex items-center gap-2 text-white font-bold text-sm group"
+              >
+                Découvrir la fonctionnalité
+                <span
+                  class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                  >arrow_forward</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
